@@ -96,7 +96,7 @@ function pagination() {
             if (currentPage <= 1)
                 document.querySelector('#btn-prev')
                     .classList.add('disabled')
-
+            document.querySelector('#slidePage').value = "";
             document.querySelector('#btn-next')
                 .classList.remove('disabled')
             renderListPaidHistory();
@@ -109,6 +109,8 @@ function pagination() {
             document.querySelector('#totalPage').innerHTML = `${currentPage}/${size}`
             document.querySelector('#btn-next').blur();
             renderListPaidHistory();
+
+            document.querySelector('#slidePage').value = "";
 
             if (currentPage >= size)
             {
