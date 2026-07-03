@@ -118,17 +118,18 @@ function pagination() {
             document.querySelector('#totalPage').innerHTML = `${currentPage}/${size}`
             document.querySelector('#btn-prev').blur();
 
-            if (currentPage <= 1)
+            if (currentPage === 1)
             {
                 document.querySelector('#btn-prev')
                 .classList.add('disabled')
             }
             else
             {
-                document.querySelector('#slidePage').value = "";    
+                
                 document.querySelector('#btn-next')
                     .classList.remove('disabled')
             }
+            document.querySelector('#slidePage').value = "";    
             renderListPaidHistory();
                     
         })
