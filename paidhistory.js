@@ -56,6 +56,31 @@ function pagination() {
         const inputValue = document.querySelector('#slidePage');
         const regex = /^\d{1,}$/;
         currentPage = onSlide(Number(inputValue.value));
+
+
+        if (currentPage === 1)
+        {
+            document.querySelector('#btn-prev')
+            .classList.add('disabled')
+            document.querySelector('#btn-next')
+            .classList.remove('disabled');
+        }
+        else if(currentPage === size)
+        {
+            // document.querySelector('#slidePage').value = "";    
+            document.querySelector('#btn-next')
+                .classList.add('disabled')
+            document.querySelector('#btn-prev')
+            .classList.remove('disabled')
+        }
+        else
+        {
+            document.querySelector('#btn-prev')
+            .classList.remove('disabled')
+            document.querySelector('#btn-next')
+            .classList.remove('disabled');
+        }
+
         if (inputValue.value > size
             || inputValue.value === ""
             || Number(inputValue.value) === 0
@@ -94,13 +119,18 @@ function pagination() {
             document.querySelector('#btn-prev').blur();
 
             if (currentPage <= 1)
+            {
                 document.querySelector('#btn-prev')
-                    .classList.add('disabled')
-            document.querySelector('#slidePage').value = "";
-            document.querySelector('#btn-next')
-                .classList.remove('disabled')
+                .classList.add('disabled')
+            }
+            else
+            {
+                // document.querySelector('#slidePage').value = "";    
+                document.querySelector('#btn-next')
+                    .classList.remove('disabled')
+            }
             renderListPaidHistory();
-
+                    
         })
 
     document.querySelector('#btn-next')
@@ -110,18 +140,20 @@ function pagination() {
             document.querySelector('#btn-next').blur();
             renderListPaidHistory();
 
-            document.querySelector('#slidePage').value = "";
-
-            if (currentPage >= size)
+            
+            if (currentPage === size)
             {
-                console.log(currentPage);
-                
                 document.querySelector('#btn-next')
-                    .classList.add('disabled')
+                .classList.add('disabled')
             }
-
-            document.querySelector('#btn-prev')
+            else
+            {
+                document.querySelector('#btn-prev')
                 .classList.remove('disabled');
+            }
+                
+            
+            // document.querySelector('#slidePage').value = "";
         })
 }
 
