@@ -125,7 +125,7 @@ function pagination() {
             }
             else
             {
-                // document.querySelector('#slidePage').value = "";    
+                document.querySelector('#slidePage').value = "";    
                 document.querySelector('#btn-next')
                     .classList.remove('disabled')
             }
@@ -153,7 +153,7 @@ function pagination() {
             }
                 
             
-            // document.querySelector('#slidePage').value = "";
+            document.querySelector('#slidePage').value = "";
         })
 }
 
