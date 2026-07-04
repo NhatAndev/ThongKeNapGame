@@ -42,7 +42,7 @@ function pagination() {
         const regex = /^\d{1,}$/;
 
 
-        if(Number(inputValue) === 0 || !regex.test(inputValue))
+        if(Number(inputValue) <=1 || !regex.test(inputValue) || Number(inputValue) > size)
         {
             document.querySelector('#chk-quantity')
                 .innerHTML = `Số trang không hợp lệ!, số trang tối đa hiện tại là ${size} trang`; 
