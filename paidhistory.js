@@ -35,7 +35,6 @@ function pagination() {
             const regex = /^\d{1,}$/;
             currentPage = onSlide(Number(inputValue.value));
             if (inputValue.value > size
-                || inputValue.value === ""
                 || Number(inputValue.value) === 0
                 || !regex.test(inputValue.value)) {
                 document.querySelector('#chk-quantity')
@@ -82,7 +81,6 @@ function pagination() {
         }
 
         if (inputValue.value > size
-            || inputValue.value === ""
             || Number(inputValue.value) === 0
             || !regex.test(inputValue.value)) {
             document.querySelector('#chk-quantity')
