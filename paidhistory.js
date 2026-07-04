@@ -29,44 +29,45 @@ function pagination() {
             .innerHTML = html;
     }
 
+
     document.querySelector('#slidePage').addEventListener('keydown', e => {
         if (e.key === "Enter") {
-            const inputValue = document.querySelector('#slidePage');
-            const regex = /^\d{1,}$/;
-            currentPage = onSlide(Number(inputValue.value));
-            if (inputValue.value > size
-                || Number(inputValue.value) === 0
-                || !regex.test(inputValue.value)) {
-                document.querySelector('#chk-quantity')
-                    .innerHTML = `Số trang không hợp lệ!, số trang tối đa hiện tại là ${size} trang`;
-            }
-            else {
-                document.querySelector('#slidePage').blur();
-                document.querySelector('#chk-quantity')
-                    .innerHTML = "";
-                document.querySelector('#totalPage').innerHTML = `${currentPage}/${size}`
-                renderListPaidHistory();
-            }
+            document.querySelector('#slidePage').blur();
         }
     })
 
+    let isValid = true;
+    document.querySelector('#slidePage').addEventListener('input', () => {
+        const inputValue = document.querySelector('#slidePage').value;
+        const regex = /^\d{1,}$/;
+
+
+        if(Number(inputValue) === 0 || !regex.test(inputValue))
+        {
+            document.querySelector('#chk-quantity')
+                .innerHTML = `Số trang không hợp lệ!, số trang tối đa hiện tại là ${size} trang`; 
+            isValid = false;
+        }
+        else
+        {
+            document.querySelector('#chk-quantity').innerHTML = "";
+            isValid = true;
+        }
+    })
 
     document.querySelector('#slidePage').addEventListener('blur', () => {
         const inputValue = document.querySelector('#slidePage');
-        const regex = /^\d{1,}$/;
         currentPage = onSlide(Number(inputValue.value));
 
-
-        if (currentPage === 1)
+        if (currentPage <= 1)
         {
             document.querySelector('#btn-prev')
             .classList.add('disabled')
             document.querySelector('#btn-next')
             .classList.remove('disabled');
         }
-        else if(currentPage === size)
+        else if(currentPage >= size)
         {
-            // document.querySelector('#slidePage').value = "";    
             document.querySelector('#btn-next')
                 .classList.add('disabled')
             document.querySelector('#btn-prev')
@@ -80,9 +81,9 @@ function pagination() {
             .classList.remove('disabled');
         }
 
-        if (inputValue.value > size
-            || Number(inputValue.value) === 0
-            || !regex.test(inputValue.value)) {
+        if(!isValid) return;
+
+        if (Number(inputValue.value) > size) {
             document.querySelector('#chk-quantity')
                 .innerHTML = `Số trang không hợp lệ!, số trang tối đa hiện tại là ${size} trang`;
         }
@@ -101,12 +102,10 @@ function pagination() {
 
     window.onSlide = onSlide;
 
-    if(currentPage <= 1)
+    if(currentPage === 1)
     {
         document.querySelector('#btn-prev').classList.add('disabled');
-        document.querySelector('#btn-next').classList.add('disabled');
     }
-    if(size > 1) document.querySelector('#btn-next').classList.remove('disabled');
     
 
     document.querySelector('#btn-prev')
