@@ -23,6 +23,7 @@ let dataUpdateNTE = {
     priceMP: "",
     priceBP: "",
     priceVip: "",
+    price1mFons: "",
     day: "15",
     month: "5",
     year: "2026"
@@ -281,6 +282,10 @@ function getPaidNTE() {
                 dataPayNTE.packName = "gói 10 roll banner"
                 packPrice = currentPriceNTE.priceVip;
                 break;
+            case '1mfons':
+                dataPayNTE.packName = "Gói 1m fons"
+                packPrice = currentPriceNTE.price1mFons;
+                break;
         }
     })
 
@@ -345,6 +350,7 @@ function updatePriceNTE() {
     const getMpValue = document.getElementById('mp-nte-update');
     const getBpValue = document.getElementById('bp-nte-update');
     const getRollVip = document.getElementById('10r');
+    const get1mFons = document.getElementById('1mfons');
     const btnSaveUpdate = document.getElementById('btn-save-update--nte');
 
     
@@ -375,6 +381,13 @@ function updatePriceNTE() {
                 <td>${data.priceVip.toLocaleString(0)} đ</td>
                 <td>${data.day} / ${data.month} / ${data.year}</td>
             </tr>
+            <tr>
+                <td>
+                    Gói 1m fons
+                </td>
+                <td>${data.price1mFons.toLocaleString(0)} đ</td>
+                <td>${data.day} / ${data.month} / ${data.year}</td>
+            </tr>
         `
 
         document.getElementById('nte-price').innerHTML = uiUpdate;
@@ -393,6 +406,7 @@ function updatePriceNTE() {
         dataUpdateNTE.priceMP = Number(getMpValue.value);
         dataUpdateNTE.priceBP = Number(getBpValue.value);
         dataUpdateNTE.priceVip = Number(getRollVip.value);
+        dataUpdateNTE.price1mFons = Number(get1mFons.value);
 
         saveData('updatePriceNTE', dataUpdateNTE);
         currentPriceNTE = getData('updatePriceNTE') || dataUpdateNTE;
