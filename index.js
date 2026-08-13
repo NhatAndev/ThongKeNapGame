@@ -28,8 +28,9 @@ let dataUpdateNTE = {
     month: "5",
     year: "2026"
 }
+saveData('updatePriceNTE', dataUpdateNTE);
 
-let currentPriceNTE = dataUpdateNTE;
+let currentPriceNTE = getData('updatePriceNTE');
 
 // ========================================
 
