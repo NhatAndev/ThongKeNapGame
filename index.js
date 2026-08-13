@@ -28,9 +28,9 @@ let dataUpdateNTE = {
     month: "5",
     year: "2026"
 }
-
-let currentPriceNTE = getData('updatePriceNTE') ?? dataUpdateNTE;
-
+saveData('updatePriceNTE', dataUpdateNTE);
+let currentPriceNTE = getData('updatePriceNTE');
+saveData('updatePriceNTE', currentPriceNTE);
 // ========================================
 
 function addDataPaidGame(dataGame) {
