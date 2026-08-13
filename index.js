@@ -29,7 +29,7 @@ let dataUpdateNTE = {
     year: "2026"
 }
 
-let currentPriceNTE = getData('updatePriceNTE');
+let currentPriceNTE = getData('updatePriceNTE') ?? dataUpdateNTE;
 
 // ========================================
 
