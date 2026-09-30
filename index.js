@@ -5,6 +5,7 @@ import { getData } from "./storage.js";
 import { clearForm } from "./storage.js";
 
 
+
 /* 
 nếu dùng lần đầu thì update trước, nếu không nó sẽ là NULL
 */
@@ -17,7 +18,6 @@ let dataUpdateWuwa = {
     month: "5",
     year: "2026"
 }
-let currentPriceWuwa = getData('updatePriceWuwa') ?? dataUpdateWuwa;
 
 let dataUpdateNTE = {
     priceMP: "",
@@ -29,13 +29,23 @@ let dataUpdateNTE = {
     year: "2026"
 }
 
+if(getData('updatePriceWuwa') === null)
+    saveData('updatePriceWuwa', dataUpdateWuwa);
+if(getData('updatePriceNTE') === null)
+    saveData('updatePriceNTE', dataUpdateNTE);
+if(getMoney('ww') === 0)
+    saveMoney('ww', 28620000);
+if(getMoney('nte') === 0)
+    saveMoney('nte', 3626000);
+
+let currentPriceWuwa = getData('updatePriceWuwa');
 let currentPriceNTE = getData('updatePriceNTE');
+
 // ========================================
 
 function addDataPaidGame(dataGame) {
     let historyPaid = getData('game-paid-history') || [];
-    // console.log(typeof getData('game-paid-history'));
-    
+
     historyPaid.push(dataGame);
     return saveData('game-paid-history', historyPaid);
 }
